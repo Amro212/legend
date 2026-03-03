@@ -12,7 +12,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 
         lenis.on('scroll', ScrollTrigger.update)
         gsap.ticker.add(onTick)
-        gsap.ticker.lagSmoothing(0)
+        gsap.ticker.lagSmoothing(500, 33)
 
         return () => {
             lenis.off('scroll', ScrollTrigger.update)

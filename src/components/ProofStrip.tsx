@@ -8,17 +8,17 @@ const cards = [
     {
         title: 'Persistent',
         description: 'Always in the replies.',
-        icon: 'https://cdn.lordicon.com/fdofqxnj.json', // Chat
+        icon: '/icons/system-solid-160-trending-up-in-trend-up.json', // Chat -> trending up
     },
     {
         title: 'Polite',
         description: 'Never aggressive. Just consistent.',
-        icon: 'https://cdn.lordicon.com/dxjqnabe.json', // Suit/Bowtie
+        icon: '/icons/wired-outline-2731-logo-circle-clubhouse-in-reveal.json', // Suit/Bowtie -> clubhouse
     },
     {
         title: 'Inevitable',
         description: 'Eventually the timeline knows your name.',
-        icon: 'https://cdn.lordicon.com/wzwygmng.json', // Spark
+        icon: '/icons/wired-outline-153-bar-chart-in-reveal.json', // Spark -> bar chart
     },
 ]
 
@@ -52,11 +52,11 @@ export function ProofStrip() {
                                     }}
                                 />
 
-                                <div className="relative z-10 flex flex-col gap-4">
+                                <div className="relative z-10 flex flex-col items-center text-center gap-4">
                                     <div className="w-10 h-10 flex items-center justify-center opacity-60 group-hover:opacity-90 transition-opacity">
                                         <LordIcon
                                             src={card.icon}
-                                            trigger="hover"
+                                            trigger="loop"
                                             colors="primary:#c9a96e"
                                             size={36}
                                         />

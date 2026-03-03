@@ -58,11 +58,11 @@ export function FloatingNavbar() {
 
     // Dynamic classes based on scrolling and scrolled state to reduce compositor load
     const navBackgroundClass = isScrolled
-        ? `bg-[var(--color-bg)]/60 border border-[var(--color-border)] ${isScrolling
-            ? 'backdrop-blur-sm shadow-[0_2px_15px_rgba(0,0,0,0.3)]'
-            : 'backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
+        ? `border border-[var(--color-border)] ${isScrolling
+            ? 'bg-[var(--color-bg)]/85 shadow-[0_2px_15px_rgba(0,0,0,0.3)]'
+            : 'bg-[var(--color-bg)]/60 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
         }`
-        : 'bg-transparent border border-transparent backdrop-blur-none shadow-none'
+        : 'bg-transparent border border-transparent shadow-none'
 
     return (
         <motion.div

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { gsap } from '@/lib/gsap'
 
 const LERP_FACTOR = 0.15; // Smoothness factor for interpolation
 
@@ -20,7 +21,7 @@ export function CustomCursor() {
     // Current interpolated values for smooth following
     const current = useRef({ dotX: -100, dotY: -100, ringX: -100, ringY: -100, dotScale: 1, ringScale: 1 })
 
-    const rafRef = useRef<number>(0)
+
 
     useEffect(() => {
         setIsMounted(true)
@@ -69,14 +70,14 @@ export function CustomCursor() {
                 visualRingRef.current.style.transform = `scale(${current.current.ringScale})`
             }
 
-            rafRef.current = requestAnimationFrame(updateCursor)
         }
 
-        rafRef.current = requestAnimationFrame(updateCursor)
+        // Unify with GSAP ticker — one rAF loop drives everything
+        gsap.ticker.add(updateCursor)
 
         return () => {
             window.removeEventListener('mousemove', onMove)
-            cancelAnimationFrame(rafRef.current)
+            gsap.ticker.remove(updateCursor)
             document.body.classList.remove('cursor-hidden')
         }
     }, [])

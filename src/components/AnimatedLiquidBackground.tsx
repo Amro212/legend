@@ -372,7 +372,7 @@ export const AnimatedLiquidBackground = React.memo(function AnimatedLiquidBackgr
     color3 = "#131315",
     scale = 0.52,
     rotation = 114,
-    speed = 1.5,
+    speed = 0.35,
     proportion = 45,
     softness = 80,
     distortion = 7,
@@ -440,6 +440,30 @@ export const AnimatedLiquidBackground = React.memo(function AnimatedLiquidBackgr
     useEffect(() => {
         shaderMountRef.current?.setSpeed(speed);
     }, [speed]);
+
+    // Throttle WebGL rendering during scroll to free GPU resources for compositing
+    useEffect(() => {
+        let scrollTimeout: ReturnType<typeof setTimeout>
+        let currentlyScrolling = false
+
+        const handleScroll = () => {
+            if (!currentlyScrolling) {
+                currentlyScrolling = true
+                shaderMountRef.current?.setSpeed(0.2)
+            }
+            clearTimeout(scrollTimeout)
+            scrollTimeout = setTimeout(() => {
+                currentlyScrolling = false
+                shaderMountRef.current?.setSpeed(speed)
+            }, 200)
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+            clearTimeout(scrollTimeout)
+        }
+    }, [speed])
 
     useEffect(() => {
         shaderMountRef.current?.setSeed(seed);
