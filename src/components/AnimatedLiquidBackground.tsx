@@ -244,9 +244,9 @@ class ShaderMountVanilla {
     };
 
     handleResize = () => {
-        const pixelRatio = window.devicePixelRatio || 1;
-        const newWidth = this.canvas.clientWidth * pixelRatio;
-        const newHeight = this.canvas.clientHeight * pixelRatio;
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 1.25);
+        const newWidth = Math.floor(this.canvas.clientWidth * pixelRatio);
+        const newHeight = Math.floor(this.canvas.clientHeight * pixelRatio);
         if (this.canvas.width !== newWidth || this.canvas.height !== newHeight) {
             this.canvas.width = newWidth;
             this.canvas.height = newHeight;
@@ -270,7 +270,7 @@ class ShaderMountVanilla {
 
         if (this.resolutionChanged) {
             this.gl.uniform2f(this.uniformLocations.u_resolution, this.gl.canvas.width, this.gl.canvas.height);
-            this.gl.uniform1f(this.uniformLocations.u_pixelRatio, window.devicePixelRatio || 1);
+            this.gl.uniform1f(this.uniformLocations.u_pixelRatio, Math.min(window.devicePixelRatio || 1, 1.25));
             this.resolutionChanged = false;
         }
 
@@ -366,7 +366,7 @@ export interface AnimatedLiquidBackgroundProps {
     className?: string;
 }
 
-export function AnimatedLiquidBackground({
+export const AnimatedLiquidBackground = React.memo(function AnimatedLiquidBackground({
     color1 = "#0a0a0b",
     color2 = "#c9a96e",
     color3 = "#131315",
@@ -462,4 +462,4 @@ export function AnimatedLiquidBackground({
             />
         </div>
     );
-}
+});

@@ -32,23 +32,19 @@ export function Hero() {
     const imageRef = useRef<HTMLDivElement>(null)
     const [copied, setCopied] = useState(false)
 
-    // Parallax on cursor movement for hero image
     useEffect(() => {
+        if (!imageRef.current) return
+
+        const xTo = gsap.quickTo(imageRef.current, 'x', { duration: 1, ease: 'power2.out' })
+        const yTo = gsap.quickTo(imageRef.current, 'y', { duration: 1, ease: 'power2.out' })
+
         const handleMouseMove = (e: MouseEvent) => {
-            if (!imageRef.current) return
-            const { clientX, clientY } = e
             const { innerWidth, innerHeight } = window
-            const x = (clientX / innerWidth - 0.5) * 20
-            const y = (clientY / innerHeight - 0.5) * 15
-            gsap.to(imageRef.current, {
-                x,
-                y,
-                duration: 1,
-                ease: 'power2.out',
-            })
+            xTo((e.clientX / innerWidth - 0.5) * 20)
+            yTo((e.clientY / innerHeight - 0.5) * 15)
         }
 
-        window.addEventListener('mousemove', handleMouseMove)
+        window.addEventListener('mousemove', handleMouseMove, { passive: true })
         return () => window.removeEventListener('mousemove', handleMouseMove)
     }, [])
 

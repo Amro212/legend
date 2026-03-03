@@ -2,9 +2,8 @@ import type { Metadata } from 'next'
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { SmoothScroll } from '@/components/SmoothScroll'
-import { CustomCursor } from '@/components/CustomCursor'
-import { AnimatedLiquidBackground } from '@/components/AnimatedLiquidBackground'
 import Script from 'next/script'
+import { CustomCursor, AnimatedLiquidBackground } from '@/components/DynamicComponents'
 
 const sora = Sora({
     subsets: ['latin'],

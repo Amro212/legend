@@ -21,38 +21,24 @@ export function CustomCursor() {
 
         document.body.classList.add('cursor-hidden')
 
+        if (!dotRef.current || !ringRef.current) return
+
+        const dotX = gsap.quickTo(dotRef.current, "x", { duration: 0.1, ease: "power2.out" })
+        const dotY = gsap.quickTo(dotRef.current, "y", { duration: 0.1, ease: "power2.out" })
+        const ringX = gsap.quickTo(ringRef.current, "x", { duration: 0.4, ease: "power2.out" })
+        const ringY = gsap.quickTo(ringRef.current, "y", { duration: 0.4, ease: "power2.out" })
+
         const onMove = (e: MouseEvent) => {
-            pos.current.x = e.clientX
-            pos.current.y = e.clientY
+            dotX(e.clientX - 4)
+            dotY(e.clientY - 4)
+            ringX(e.clientX - 20)
+            ringY(e.clientY - 20)
         }
 
-        const animate = () => {
-            const { x, y } = pos.current
-
-            // Dot follows closely
-            dotPos.current.x += (x - dotPos.current.x) * 0.25
-            dotPos.current.y += (y - dotPos.current.y) * 0.25
-
-            // Ring follows with more lag
-            ringPos.current.x += (x - ringPos.current.x) * 0.12
-            ringPos.current.y += (y - ringPos.current.y) * 0.12
-
-            if (dotRef.current) {
-                dotRef.current.style.transform = `translate(${dotPos.current.x - 4}px, ${dotPos.current.y - 4}px)`
-            }
-            if (ringRef.current) {
-                ringRef.current.style.transform = `translate(${ringPos.current.x - 20}px, ${ringPos.current.y - 20}px)`
-            }
-
-            rafRef.current = requestAnimationFrame(animate)
-        }
-
-        window.addEventListener('mousemove', onMove)
-        rafRef.current = requestAnimationFrame(animate)
+        window.addEventListener('mousemove', onMove, { passive: true })
 
         return () => {
             window.removeEventListener('mousemove', onMove)
-            if (rafRef.current) cancelAnimationFrame(rafRef.current)
             document.body.classList.remove('cursor-hidden')
         }
     }, [])
@@ -111,8 +97,8 @@ export function CustomCursor() {
             }
         }
 
-        document.addEventListener('mouseover', handleOver)
-        document.addEventListener('mouseout', handleOut)
+        document.addEventListener('mouseover', handleOver, { passive: true })
+        document.addEventListener('mouseout', handleOut, { passive: true })
 
         return () => {
             document.removeEventListener('mouseover', handleOver)
