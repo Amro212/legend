@@ -25,7 +25,7 @@ export function ContractSection() {
     }
 
     return (
-        <section className="relative py-20 lg:py-32" style={{ padding: 'clamp(3rem, 8vw, 8rem) clamp(1.5rem, 5vw, 6rem)' }}>
+        <section id="contract" className="relative py-20 lg:py-32" style={{ padding: 'clamp(3rem, 8vw, 8rem) clamp(1.5rem, 5vw, 6rem)' }}>
             <div className="max-w-3xl mx-auto text-center">
                 <ScrollReveal>
                     <p className="text-sm font-[family-name:var(--font-mono)] text-[var(--color-text-muted)] tracking-widest uppercase mb-6">
@@ -34,6 +34,11 @@ export function ContractSection() {
                 </ScrollReveal>
 
                 <ScrollReveal delay={0.1}>
+                    {/* Microcopy */}
+                    <p className="font-[family-name:var(--font-sans)] text-[var(--color-accent)] font-medium text-sm mb-3">
+                        Certified Reply Guy.
+                    </p>
+
                     {/* CA Pill */}
                     <div className="relative inline-flex flex-col items-center gap-4">
                         <div className="flex items-center gap-3 px-5 py-3.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)]">

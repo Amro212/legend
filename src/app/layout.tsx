@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { SmoothScroll } from '@/components/SmoothScroll'
+import { FloatingNavbar } from '@/components/FloatingNavbar'
 import Script from 'next/script'
 import { CustomCursor, AnimatedLiquidBackground } from '@/components/DynamicComponents'
 
@@ -54,6 +55,7 @@ export default function RootLayout({
                 </div>
                 <SmoothScroll>
                     <div className="relative z-10 flex flex-col min-h-screen">
+                        <FloatingNavbar />
                         <CustomCursor />
                         <main className="relative z-[2] grow">
                             {children}

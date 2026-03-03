@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { LordIcon } from './LordIcon'
 
 const CA = 'J4ixzSEG99FWNoHRYfoaE3y2e7T7e7KX8NKNPy96pump'
-const X_COMMUNITY = 'https://x.com/i/communities/2003523155730616378'
+const OFFICIAL_TWITTER = 'https://x.com/legendreplyguy?s=21'
 
 const charVariants = {
     hidden: { opacity: 0, y: 60, rotateX: -90 },
@@ -115,15 +115,15 @@ export function Hero() {
                         variants={containerVariants}
                         initial="hidden"
                         animate="visible"
-                        className="font-[family-name:var(--font-display)] font-bold tracking-tight leading-none"
-                        style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)' }}
+                        className="font-[family-name:var(--font-display)] font-bold tracking-tight leading-none max-w-2xl"
+                        style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}
                     >
-                        {'LEGEND'.split('').map((char, i) => (
+                        {'Legend, can I have $5 for lunch?'.split('').map((char, i) => (
                             <motion.span
                                 key={i}
                                 variants={charVariants}
-                                className="inline-block"
-                                style={{ color: i === 0 ? 'var(--color-accent)' : 'var(--color-text-primary)' }}
+                                className="inline-block whitespace-pre"
+                                style={{ color: i < 6 ? 'var(--color-accent)' : 'var(--color-text-primary)' }}
                             >
                                 {char}
                             </motion.span>
@@ -138,8 +138,7 @@ export function Hero() {
                         className="text-[var(--color-text-secondary)] font-[family-name:var(--font-sans)] max-w-md"
                         style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', lineHeight: 1.7 }}
                     >
-                        <span className="text-[var(--color-accent)] font-medium">$LEGEND</span>, built for the
-                        ones who don&apos;t beg. They become.
+                        The most polite reply guy on Solana.
                     </motion.p>
 
                     {/* CTAs */}
@@ -151,7 +150,7 @@ export function Hero() {
                     >
                         {/* Primary CTA */}
                         <motion.a
-                            href={X_COMMUNITY}
+                            href={OFFICIAL_TWITTER}
                             target="_blank"
                             rel="noopener noreferrer"
                             data-cursor="OPEN"
@@ -159,7 +158,7 @@ export function Hero() {
                             whileTap={{ scale: 0.97 }}
                             className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-[var(--color-bg)] font-[family-name:var(--font-display)] font-semibold text-sm tracking-wide rounded-full transition-shadow hover:shadow-[0_0_30px_rgba(201,169,110,0.3)]"
                         >
-                            Join the Community
+                            Follow Legend
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M7 17L17 7M17 7H7M17 7V17" />
                             </svg>

@@ -6,26 +6,33 @@ import { LordIcon } from './LordIcon'
 
 const cards = [
     {
-        title: 'Community First',
-        description: 'No insiders, no backroom deals. Just conviction.',
-        icon: 'https://cdn.lordicon.com/mjmrmyzg.json', // People/Network
+        title: 'Persistent',
+        description: 'Always in the replies.',
+        icon: 'https://cdn.lordicon.com/fdofqxnj.json', // Chat
     },
     {
-        title: 'Transparent CA',
-        description: 'On-chain, verifiable, nothing hidden.',
-        icon: 'https://cdn.lordicon.com/tqywkdcz.json', // Code/Contract
+        title: 'Polite',
+        description: 'Never aggressive. Just consistent.',
+        icon: 'https://cdn.lordicon.com/dxjqnabe.json', // Suit/Bowtie
     },
     {
-        title: 'Built to Last',
-        description: 'In spirit, in culture, in legend.',
-        icon: 'https://cdn.lordicon.com/yyxobqnx.json', // Diamond/Gem
+        title: 'Inevitable',
+        description: 'Eventually the timeline knows your name.',
+        icon: 'https://cdn.lordicon.com/wzwygmng.json', // Spark
     },
 ]
 
 export function ProofStrip() {
     return (
-        <section className="relative py-16 lg:py-24" style={{ padding: '0 clamp(1.5rem, 5vw, 6rem)' }}>
+        <section id="archetype" className="relative py-16 lg:py-24" style={{ padding: '0 clamp(1.5rem, 5vw, 6rem)' }}>
             <div className="max-w-7xl mx-auto">
+                <ScrollReveal>
+                    <div className="text-center mb-12">
+                        <h2 className="font-[family-name:var(--font-display)] font-bold text-[var(--color-text-primary)] text-3xl md:text-4xl">
+                            The Archetype
+                        </h2>
+                    </div>
+                </ScrollReveal>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
                     {cards.map((card, i) => (
                         <ScrollReveal key={card.title} delay={i * 0.15}>
