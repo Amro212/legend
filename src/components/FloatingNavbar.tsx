@@ -10,23 +10,14 @@ export function FloatingNavbar() {
     const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {
-        // Track the hero section (first section in the DOM)
-        const heroEl = document.querySelector('section')
-        if (!heroEl) return
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50)
+        }
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                // If the hero section is less than 10% visible, morph the navbar
-                setIsScrolled(entry.intersectionRatio < 0.1)
-            },
-            {
-                root: null,
-                threshold: [0.1],
-            }
-        )
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll() // Trigger once on mount
 
-        observer.observe(heroEl)
-        return () => observer.disconnect()
+        return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
     const handleScroll = (id: string) => {
@@ -45,8 +36,8 @@ export function FloatingNavbar() {
         >
             <div
                 className={`flex items-center justify-between px-5 py-3 rounded-full transition-all duration-500 ${isScrolled
-                        ? 'bg-[var(--color-bg)]/60 backdrop-blur-xl border border-[var(--color-border)] shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
-                        : 'bg-transparent border border-transparent'
+                    ? 'bg-[var(--color-bg)]/60 backdrop-blur-xl border border-[var(--color-border)] shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
+                    : 'bg-transparent border border-transparent'
                     }`}
             >
                 {/* Logo */}
@@ -90,8 +81,8 @@ export function FloatingNavbar() {
                     rel="noopener noreferrer"
                     data-cursor="OPEN"
                     className={`px-5 py-2.5 rounded-full font-[family-name:var(--font-display)] font-semibold text-xs tracking-wide transition-all duration-300 ${isScrolled
-                            ? 'bg-[var(--color-accent)] text-[var(--color-bg)] hover:shadow-[0_0_20px_rgba(201,169,110,0.3)] hover:scale-105'
-                            : 'bg-white/10 text-[var(--color-text-primary)] backdrop-blur-md border border-white/10 hover:bg-white/20 hover:scale-105'
+                        ? 'bg-[var(--color-accent)] text-[var(--color-bg)] hover:shadow-[0_0_20px_rgba(201,169,110,0.3)] hover:scale-105'
+                        : 'bg-white/10 text-[var(--color-text-primary)] backdrop-blur-md border border-white/10 hover:bg-white/20 hover:scale-105'
                         }`}
                 >
                     Follow
