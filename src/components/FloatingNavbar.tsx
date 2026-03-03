@@ -1,24 +1,53 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'motion/react'
+import { useState, useRef } from 'react'
+import { motion, useScroll, useMotionValueEvent } from 'motion/react'
 
 const OFFICIAL_TWITTER = 'https://x.com/legendreplyguy?s=21'
 const TELEGRAM_STICKERS = 'https://t.me/addstickers/Legend273'
 
 export function FloatingNavbar() {
+    const { scrollY } = useScroll()
     const [isScrolled, setIsScrolled] = useState(false)
+    const [isScrolling, setIsScrolling] = useState(false)
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50)
+    const scrollTimeout = useRef<number>(0)
+    const lastScrollTime = useRef(0)
+
+    useMotionValueEvent(scrollY, "change", (latest) => {
+        const scrolled = latest > 50
+        if (scrolled !== isScrolled) {
+            setIsScrolled(scrolled)
         }
 
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        handleScroll() // Trigger once on mount
+        if (scrolled) {
+            lastScrollTime.current = Date.now()
 
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+            if (!isScrolling) {
+                setIsScrolling(true)
+            }
+
+            if (!scrollTimeout.current) {
+                const checkScroll = () => {
+                    // Check if 150ms has passed since the last scroll event
+                    if (Date.now() - lastScrollTime.current >= 150) {
+                        setIsScrolling(false)
+                        scrollTimeout.current = 0
+                    } else {
+                        // Re-check frequently
+                        scrollTimeout.current = window.setTimeout(checkScroll, 50)
+                    }
+                }
+                scrollTimeout.current = window.setTimeout(checkScroll, 150)
+            }
+        } else if (isScrolling) {
+            setIsScrolling(false)
+            if (scrollTimeout.current) {
+                window.clearTimeout(scrollTimeout.current)
+                scrollTimeout.current = 0
+            }
+        }
+    })
 
     const handleScroll = (id: string) => {
         const el = document.getElementById(id)
@@ -26,6 +55,14 @@ export function FloatingNavbar() {
             el.scrollIntoView({ behavior: 'smooth' })
         }
     }
+
+    // Dynamic classes based on scrolling and scrolled state to reduce compositor load
+    const navBackgroundClass = isScrolled
+        ? `bg-[var(--color-bg)]/60 border border-[var(--color-border)] ${isScrolling
+            ? 'backdrop-blur-sm shadow-[0_2px_15px_rgba(0,0,0,0.3)]'
+            : 'backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
+        }`
+        : 'bg-transparent border border-transparent backdrop-blur-none shadow-none'
 
     return (
         <motion.div
@@ -35,10 +72,7 @@ export function FloatingNavbar() {
             transition={{ type: 'spring', damping: 20, stiffness: 100, delay: 0.2 }}
         >
             <div
-                className={`flex items-center justify-between px-5 py-3 rounded-full transition-all duration-500 ${isScrolled
-                    ? 'bg-[var(--color-bg)]/60 backdrop-blur-xl border border-[var(--color-border)] shadow-[0_4px_30px_rgba(0,0,0,0.5)]'
-                    : 'bg-transparent border border-transparent'
-                    }`}
+                className={`flex items-center justify-between px-5 py-3 rounded-full transition-all duration-500 ${navBackgroundClass}`}
             >
                 {/* Logo */}
                 <button

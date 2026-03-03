@@ -25,12 +25,12 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-    title: 'LEGEND | $LEGEND — Built for the ones who don\'t beg',
+    title: 'LEGEND | $LEGEND — Built for the ones who beg',
     description: 'LEGEND is the calm flex. A gentleman frog in a space full of noise. Join the community.',
     keywords: ['LEGEND', '$LEGEND', 'memecoin', 'Solana', 'community'],
     openGraph: {
         title: 'LEGEND | $LEGEND',
-        description: 'Built for the ones who don\'t beg. They become.',
+        description: 'Built for the ones who beg. They become.',
         type: 'website',
     },
 }

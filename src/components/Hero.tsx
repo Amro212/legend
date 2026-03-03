@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, Fragment } from 'react'
 import { motion } from 'motion/react'
 import { gsap, useGSAP } from '@/lib/gsap'
 import Image from 'next/image'
@@ -100,9 +100,9 @@ export function Hero() {
                         transition={{ delay: 1.5, duration: 1 }}
                         className="w-8 h-8"
                     >
-                        {/* Premium Crown Icon */}
+                        {/* Coins Icon */}
                         <LordIcon
-                            src="https://cdn.lordicon.com/xhebrhsj.json"
+                            src="/wired-outline-298-coins-hover-spending.json"
                             trigger="loop"
                             delay="3000"
                             colors="primary:#c9a96e"
@@ -118,16 +118,32 @@ export function Hero() {
                         className="font-[family-name:var(--font-display)] font-bold tracking-tight leading-none max-w-2xl"
                         style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}
                     >
-                        {'Legend, can I have $5 for lunch?'.split('').map((char, i) => (
-                            <motion.span
-                                key={i}
-                                variants={charVariants}
-                                className="inline-block whitespace-pre"
-                                style={{ color: i < 6 ? 'var(--color-accent)' : 'var(--color-text-primary)' }}
-                            >
-                                {char}
-                            </motion.span>
-                        ))}
+                        {'Legend, any paid tasks?'.split(' ').map((word, wordIdx, wordsArr) => {
+                            let prevCharsCount = 0;
+                            for (let i = 0; i < wordIdx; i++) {
+                                prevCharsCount += wordsArr[i].length + 1;
+                            }
+                            return (
+                                <Fragment key={wordIdx}>
+                                    <span className="inline-block whitespace-nowrap">
+                                        {word.split('').map((char, charIdx) => {
+                                            const globalIdx = prevCharsCount + charIdx;
+                                            return (
+                                                <motion.span
+                                                    key={charIdx}
+                                                    variants={charVariants}
+                                                    className="inline-block"
+                                                    style={{ color: globalIdx < 6 ? 'var(--color-accent)' : 'var(--color-text-primary)' }}
+                                                >
+                                                    {char}
+                                                </motion.span>
+                                            );
+                                        })}
+                                    </span>
+                                    {wordIdx < wordsArr.length - 1 && ' '}
+                                </Fragment>
+                            );
+                        })}
                     </motion.h1>
 
                     {/* Subtitle */}
