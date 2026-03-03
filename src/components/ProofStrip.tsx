@@ -8,17 +8,17 @@ const cards = [
     {
         title: 'Community First',
         description: 'No insiders, no backroom deals. Just conviction.',
-        icon: 'https://cdn.lordicon.com/dxjqoygy.json',
+        icon: 'https://cdn.lordicon.com/mjmrmyzg.json', // People/Network
     },
     {
         title: 'Transparent CA',
         description: 'On-chain, verifiable, nothing hidden.',
-        icon: 'https://cdn.lordicon.com/nocovwne.json',
+        icon: 'https://cdn.lordicon.com/tqywkdcz.json', // Code/Contract
     },
     {
         title: 'Built to Last',
         description: 'In spirit, in culture, in legend.',
-        icon: 'https://cdn.lordicon.com/kbtmbyzy.json',
+        icon: 'https://cdn.lordicon.com/yyxobqnx.json', // Diamond/Gem
     },
 ]
 

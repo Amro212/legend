@@ -3,6 +3,7 @@ import { Sora, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { CustomCursor } from '@/components/CustomCursor'
+import { AnimatedLiquidBackground } from '@/components/AnimatedLiquidBackground'
 import Script from 'next/script'
 
 const sora = Sora({
@@ -40,19 +41,25 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="en" className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+        <html lang="en" className={`${sora.variable} ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
             <head>
                 <Script
                     src="https://cdn.lordicon.com/lordicon.js"
                     strategy="lazyOnload"
                 />
             </head>
-            <body>
+            <body suppressHydrationWarning>
+                {/* Background Layer */}
+                <div className="fixed inset-0 z-0 pointer-events-none">
+                    <AnimatedLiquidBackground />
+                </div>
                 <SmoothScroll>
-                    <CustomCursor />
-                    <main className="relative z-[2]">
-                        {children}
-                    </main>
+                    <div className="relative z-10 flex flex-col min-h-screen">
+                        <CustomCursor />
+                        <main className="relative z-[2] grow">
+                            {children}
+                        </main>
+                    </div>
                 </SmoothScroll>
             </body>
         </html>

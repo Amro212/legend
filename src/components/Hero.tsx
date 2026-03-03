@@ -104,8 +104,9 @@ export function Hero() {
                         transition={{ delay: 1.5, duration: 1 }}
                         className="w-8 h-8"
                     >
+                        {/* Premium Crown Icon */}
                         <LordIcon
-                            src="https://cdn.lordicon.com/jkzgajyr.json"
+                            src="https://cdn.lordicon.com/xhebrhsj.json"
                             trigger="loop"
                             delay="3000"
                             colors="primary:#c9a96e"
@@ -222,10 +223,11 @@ export function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.3 }}
                             transition={{ delay: 2, duration: 1 }}
-                            className="absolute -top-4 -right-4"
+                            className="absolute -top-4 -right-4 pointer-events-none"
                         >
+                            {/* Diamond Icon */}
                             <LordIcon
-                                src="https://cdn.lordicon.com/yqzmiobz.json"
+                                src="https://cdn.lordicon.com/qhguztuy.json"
                                 trigger="loop"
                                 delay="4000"
                                 colors="primary:#c9a96e"
@@ -237,10 +239,11 @@ export function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.25 }}
                             transition={{ delay: 2.5, duration: 1 }}
-                            className="absolute bottom-8 -left-6"
+                            className="absolute bottom-8 -left-6 pointer-events-none"
                         >
+                            {/* Coin/Token Icon */}
                             <LordIcon
-                                src="https://cdn.lordicon.com/ternnbni.json"
+                                src="https://cdn.lordicon.com/zlwdfkof.json"
                                 trigger="loop"
                                 delay="5000"
                                 colors="primary:#c9a96e"
