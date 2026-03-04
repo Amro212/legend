@@ -53,7 +53,7 @@ export function ContractSection() {
                             data-cursor="COPY"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.88 }}
-                            className="relative inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--color-border)] bg-[var(--color-bg-card)] text-[var(--color-text-primary)] font-[family-name:var(--font-mono)] text-sm transition-all hover:border-[var(--color-accent-dim)] hover:bg-[var(--color-bg-card-hover)]"
+                            className="relative inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-full border border-[var(--color-border)] bg-[var(--color-bg-card)] text-[var(--color-text-primary)] font-[family-name:var(--font-mono)] text-sm transition-all hover:border-[var(--color-accent-dim)] hover:bg-[var(--color-bg-card-hover)]"
                         >
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />

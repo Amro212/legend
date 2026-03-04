@@ -385,6 +385,21 @@ export const AnimatedLiquidBackground = React.memo(function AnimatedLiquidBackgr
 }: AnimatedLiquidBackgroundProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const shaderMountRef = useRef<ShaderMountVanilla | null>(null);
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    // Detect mobile / low-power devices and skip heavy WebGL
+    useEffect(() => {
+        const checkMobile = () => {
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const isSmallScreen = window.innerWidth < 768;
+            // Also check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            setIsMobile(isTouchDevice || isSmallScreen || prefersReducedMotion);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile, { passive: true });
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const uniforms = useMemo(() => {
         return {
@@ -417,6 +432,7 @@ export const AnimatedLiquidBackground = React.memo(function AnimatedLiquidBackgr
     ]);
 
     useEffect(() => {
+        if (isMobile) return;
         if (canvasRef.current && !shaderMountRef.current) {
             shaderMountRef.current = new ShaderMountVanilla(
                 canvasRef.current,
@@ -431,7 +447,7 @@ export const AnimatedLiquidBackground = React.memo(function AnimatedLiquidBackgr
             shaderMountRef.current?.dispose();
             shaderMountRef.current = null;
         };
-    }, []);
+    }, [isMobile]);
 
     useEffect(() => {
         shaderMountRef.current?.setUniforms(uniforms);
@@ -471,10 +487,22 @@ export const AnimatedLiquidBackground = React.memo(function AnimatedLiquidBackgr
 
     return (
         <div className={`absolute inset-0 z-0 overflow-hidden ${className}`}>
-            <canvas
-                ref={canvasRef}
-                className="w-full h-full block"
-            />
+            {isMobile ? (
+                /* Lightweight CSS gradient fallback for mobile / reduced-motion */
+                <div
+                    className="w-full h-full"
+                    style={{
+                        background: `radial-gradient(ellipse at 30% 20%, ${color2}12 0%, transparent 50%),
+                                     radial-gradient(ellipse at 70% 80%, ${color2}08 0%, transparent 50%),
+                                     ${color1}`,
+                    }}
+                />
+            ) : (
+                <canvas
+                    ref={canvasRef}
+                    className="w-full h-full block"
+                />
+            )}
             {/* Optional subtle noise overlay to add texture */}
             <div
                 className="absolute inset-0 pointer-events-none opacity-[0.03]"

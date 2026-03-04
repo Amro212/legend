@@ -34,6 +34,9 @@ export function Hero() {
 
     useEffect(() => {
         if (!imageRef.current) return
+        // Skip parallax mouse-move effect on touch devices
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+        if (isTouchDevice) return
 
         const xTo = gsap.quickTo(imageRef.current, 'x', { duration: 1, ease: 'power2.out' })
         const yTo = gsap.quickTo(imageRef.current, 'y', { duration: 1, ease: 'power2.out' })
@@ -84,9 +87,9 @@ export function Hero() {
             className="relative min-h-screen flex items-center overflow-hidden"
             style={{ padding: 'clamp(1.5rem, 5vw, 6rem)' }}
         >
-            {/* Subtle gradient orb */}
+            {/* Subtle gradient orb — clamped for mobile */}
             <div
-                className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full opacity-10 blur-[120px] pointer-events-none"
+                className="absolute top-1/4 left-1/4 w-[min(600px,80vw)] h-[min(600px,80vw)] rounded-full opacity-10 blur-[120px] pointer-events-none"
                 style={{ background: 'radial-gradient(circle, var(--color-accent) 0%, transparent 70%)' }}
             />
 
@@ -172,7 +175,7 @@ export function Hero() {
                             data-cursor="OPEN"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.97 }}
-                            className="inline-flex items-center gap-2 px-7 py-3.5 bg-[var(--color-accent)] text-[var(--color-bg)] font-[family-name:var(--font-display)] font-semibold text-sm tracking-wide rounded-full transition-shadow hover:shadow-[0_0_30px_rgba(201,169,110,0.3)]"
+                            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] bg-[var(--color-accent)] text-[var(--color-bg)] font-[family-name:var(--font-display)] font-semibold text-sm tracking-wide rounded-full transition-shadow hover:shadow-[0_0_30px_rgba(201,169,110,0.3)]"
                         >
                             Follow Legend
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -186,7 +189,7 @@ export function Hero() {
                             data-cursor="COPY"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.92 }}
-                            className="relative inline-flex items-center gap-2 px-7 py-3.5 border border-[var(--color-border)] text-[var(--color-text-primary)] font-[family-name:var(--font-mono)] text-sm rounded-full transition-colors hover:border-[var(--color-accent-dim)] hover:text-[var(--color-accent)]"
+                            className="relative inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] border border-[var(--color-border)] text-[var(--color-text-primary)] font-[family-name:var(--font-mono)] text-sm rounded-full transition-colors hover:border-[var(--color-accent-dim)] hover:text-[var(--color-accent)]"
                         >
                             {copied ? (
                                 <motion.span

@@ -15,7 +15,7 @@ export function TheMeme() {
                         className="font-[family-name:var(--font-sans)] text-[var(--color-text-secondary)] leading-relaxed"
                         style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)' }}
                     >
-                        LEGEND is the calm flex. A gentleman frog in a space full of noise.
+                        LEGEND is the calm flex. A gentleman lizard in a space full of noise.
                         No screaming, no begging, no &quot;next 100x&quot; promises.
                         Just a tux, a vibe, and a community that gets it.
                     </p>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Sora, Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { SmoothScroll } from '@/components/SmoothScroll'
@@ -24,9 +24,17 @@ const jetbrainsMono = JetBrains_Mono({
     display: 'swap',
 })
 
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    viewportFit: 'cover',
+    themeColor: '#0a0a0b',
+}
+
 export const metadata: Metadata = {
     title: 'LEGEND | $LEGEND — Built for the ones who beg',
-    description: 'LEGEND is the calm flex. A gentleman frog in a space full of noise. Join the community.',
+    description: 'LEGEND is the calm flex. A gentleman lizard in a space full of noise. Join the community.',
     keywords: ['LEGEND', '$LEGEND', 'memecoin', 'Solana', 'community'],
     icons: {
         icon: '/hero-frog.png',
