@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     title: 'LEGEND | $LEGEND — Built for the ones who beg',
     description: 'LEGEND is the calm flex. A gentleman frog in a space full of noise. Join the community.',
     keywords: ['LEGEND', '$LEGEND', 'memecoin', 'Solana', 'community'],
+    icons: {
+        icon: '/hero-frog.png',
+        shortcut: '/hero-frog.png',
+        apple: '/hero-frog.png',
+    },
     openGraph: {
         title: 'LEGEND | $LEGEND',
         description: 'Built for the ones who beg. They become.',

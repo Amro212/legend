@@ -85,7 +85,7 @@ export function FloatingNavbar() {
 
                 {/* Links */}
                 <div className="hidden md:flex items-center gap-8">
-                    {['Archetype', 'Contract', 'Community'].map((item) => (
+                    {['Archetype', 'Contract', 'Gallery', 'Community'].map((item) => (
                         <button
                             key={item}
                             onClick={() => handleScroll(item.toLowerCase())}
