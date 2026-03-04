@@ -29,7 +29,7 @@ export function LordIcon({
     style,
     loading,
 }: LordIconProps) {
-    const containerRef = useRef<HTMLDivElement>(null)
+    const containerRef = useRef<HTMLSpanElement>(null)
     const playerRef = useRef<any>(null)
     const scrollTimeout = useRef<number>(0)
     const { scrollY } = useScroll()
@@ -91,5 +91,5 @@ export function LordIcon({
         }
     }, [src, trigger, delay, colors, size, loading])
 
-    return <div ref={containerRef} className={className} style={style} />
+    return <span ref={containerRef} className={className} style={{ display: 'inline-flex', ...style }} />
 }

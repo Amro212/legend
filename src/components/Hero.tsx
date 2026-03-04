@@ -96,23 +96,6 @@ export function Hero() {
             <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 {/* Left: Text Stack */}
                 <div className="flex flex-col gap-6 lg:gap-8">
-                    {/* Lordicon accent */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.4 }}
-                        transition={{ delay: 1.5, duration: 1 }}
-                        className="w-8 h-8"
-                    >
-                        {/* Coins Icon */}
-                        <LordIcon
-                            src="/wired-outline-298-coins-hover-spending.json"
-                            trigger="loop"
-                            delay="3000"
-                            colors="primary:#c9a96e"
-                            size={32}
-                        />
-                    </motion.div>
-
                     {/* H1 - Character reveal */}
                     <motion.h1
                         variants={containerVariants}
@@ -154,10 +137,24 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-[var(--color-text-secondary)] font-[family-name:var(--font-sans)] max-w-md"
+                        className="text-[var(--color-text-secondary)] font-[family-name:var(--font-sans)] max-w-md inline-flex items-center flex-wrap gap-2"
                         style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', lineHeight: 1.7 }}
                     >
                         The most polite reply guy on Solana.
+                        <motion.span
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.4 }}
+                            transition={{ delay: 1.5, duration: 1 }}
+                            className="inline-flex w-8 h-8"
+                        >
+                            <LordIcon
+                                src="/wired-outline-298-coins-hover-spending.json"
+                                trigger="loop"
+                                delay="3000"
+                                colors="primary:#c9a96e"
+                                size={32}
+                            />
+                        </motion.span>
                     </motion.p>
 
                     {/* CTAs */}
