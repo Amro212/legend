@@ -5,6 +5,7 @@ import { SmoothScroll } from '@/components/SmoothScroll'
 import { FloatingNavbar } from '@/components/FloatingNavbar'
 import Script from 'next/script'
 import { CustomCursor, AnimatedLiquidBackground } from '@/components/DynamicComponents'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const sora = Sora({
     subsets: ['latin'],
@@ -75,6 +76,7 @@ export default function RootLayout({
                         </main>
                     </div>
                 </SmoothScroll>
+                <SpeedInsights />
             </body>
         </html>
     )
