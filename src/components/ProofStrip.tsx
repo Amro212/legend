@@ -57,7 +57,7 @@ export function ProofStrip() {
                                         <LordIcon
                                             src={card.icon}
                                             trigger="loop"
-                                            colors="primary:#c9a96e"
+                                            colors="primary:#c9a96e,secondary:#c9a96e"
                                             size={36}
                                         />
                                     </div>
