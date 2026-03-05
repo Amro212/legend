@@ -96,7 +96,7 @@ export function Gallery({ items }: GalleryProps) {
                                             ▶
                                         </span>
                                     )}
-                                    <span className="absolute bottom-3 left-3 right-3 text-xs text-white/80 font-[family-name:var(--font-sans)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 truncate">
+                                    <span className="absolute bottom-3 left-3 right-3 text-xs text-white/80 font-[family-name:var(--font-sans)] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         {item.alt}
                                     </span>
                                 </motion.button>
