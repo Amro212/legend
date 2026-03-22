@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero'
 import { ProofStrip } from '@/components/ProofStrip'
 import { TheMeme } from '@/components/TheMeme'
 import { ContractSection } from '@/components/ContractSection'
+import { ChartEmbed } from '@/components/ChartEmbed'
 import { Community } from '@/components/Community'
 import { Gallery, type GalleryItem } from '@/components/Gallery'
 
@@ -37,6 +38,7 @@ export default function Home() {
             <ProofStrip />
             <TheMeme />
             <ContractSection />
+            <ChartEmbed />
             <Gallery items={galleryItems} />
             <Community />
         </>

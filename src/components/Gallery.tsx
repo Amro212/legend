@@ -52,7 +52,7 @@ export function Gallery({ items }: GalleryProps) {
                         className="mt-4 text-center text-[var(--color-text-secondary)] font-[family-name:var(--font-sans)] max-w-md mx-auto"
                         style={{ fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)', lineHeight: 1.7 }}
                     >
-                        Moments of legend, captured forever.
+                        Moments of legend, with PumpFun creator fees helping support the construction of a school in Nigeria.
                     </p>
                 </ScrollReveal>
 
