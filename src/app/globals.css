@@ -80,6 +80,10 @@
   .cursor-hidden {
     cursor: none;
   }
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
+  }
 }
 
 /* Reduced motion */

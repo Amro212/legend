@@ -9,6 +9,16 @@ import { LordIcon } from './LordIcon'
 const CA = 'J4ixzSEG99FWNoHRYfoaE3y2e7T7e7KX8NKNPy96pump'
 const OFFICIAL_TWITTER = 'https://x.com/legendreplyguy?s=21'
 
+const H1_TEXT = 'Legend, any paid tasks?';
+const H1_WORDS = H1_TEXT.split(' ');
+const H1_WORDS_WITH_INDICES = H1_WORDS.map((word, wordIdx) => {
+    let prevCharsCount = 0;
+    for (let i = 0; i < wordIdx; i++) {
+        prevCharsCount += H1_WORDS[i].length + 1;
+    }
+    return { word, prevCharsCount };
+});
+
 const charVariants = {
     hidden: { opacity: 0, y: 60, rotateX: -90 },
     visible: {
@@ -104,11 +114,7 @@ export function Hero() {
                         className="font-[family-name:var(--font-display)] font-bold tracking-tight leading-none max-w-2xl"
                         style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}
                     >
-                        {'Legend, any paid tasks?'.split(' ').map((word, wordIdx, wordsArr) => {
-                            let prevCharsCount = 0;
-                            for (let i = 0; i < wordIdx; i++) {
-                                prevCharsCount += wordsArr[i].length + 1;
-                            }
+                        {H1_WORDS_WITH_INDICES.map(({ word, prevCharsCount }, wordIdx) => {
                             return (
                                 <Fragment key={wordIdx}>
                                     <span className="inline-block whitespace-nowrap">
@@ -126,7 +132,7 @@ export function Hero() {
                                             );
                                         })}
                                     </span>
-                                    {wordIdx < wordsArr.length - 1 && ' '}
+                                    {wordIdx < H1_WORDS_WITH_INDICES.length - 1 && ' '}
                                 </Fragment>
                             );
                         })}

@@ -24,7 +24,7 @@ const cards = [
 
 export function ProofStrip() {
     return (
-        <section id="archetype" className="relative py-16 lg:py-24" style={{ padding: '0 clamp(1.5rem, 5vw, 6rem)' }}>
+        <section id="archetype" className="relative py-16 lg:py-24 content-visibility-auto" style={{ padding: '0 clamp(1.5rem, 5vw, 6rem)' }}>
             <div className="max-w-7xl mx-auto">
                 <ScrollReveal>
                     <div className="text-center mb-12">
